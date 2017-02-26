@@ -1,0 +1,23 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+    dotenv (2.2.0)
+    json (1.8.6)
+    mini_portile2 (2.1.0)
+    net-ftp-list (3.2.9)
+    nokogiri (1.7.0.1)
+      mini_portile2 (~> 2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  aws-sdk-v1
+  dotenv
+  net-ftp-list
+
+BUNDLED WITH
+   1.13.6
