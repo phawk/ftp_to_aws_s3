@@ -6,7 +6,7 @@
 
 ```sh
 $ bundle install
-$ printf "AWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=XXX\nAWS_SECRET_ACCESS_KEY=YYY\nAWS_S3_BUCKET=my-bucket-name\n" > .env
+$ cp .env.sample .env
 $ ruby run.rb
 ```
 
