@@ -22,7 +22,7 @@ Net::FTP.open(ENV['FTP_SERVER'], ENV['FTP_USER'], ENV['FTP_PASSWORD']) do |ftp|
     begin
       entry = Net::FTP::List.parse(e)
     rescue => err
-      err_log << "Failure parsing #{e} - #{err}"
+      err_log << "Failure parsing #{e} - #{err} \n"
       puts "Failure parsing #{e}"
       next
     end
