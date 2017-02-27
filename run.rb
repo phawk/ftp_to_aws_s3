@@ -3,8 +3,11 @@ require 'dotenv'
 require 'net/ftp'
 require 'net/ftp/list'
 require 'tempfile'
+require 'logger'
 
 Dotenv.load
+
+err_log = Logger.new("errors.log")
 
 AWS.config(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], region: ENV['AWS_REGION'])
 
@@ -15,7 +18,14 @@ Net::FTP.open(ENV['FTP_SERVER'], ENV['FTP_USER'], ENV['FTP_PASSWORD']) do |ftp|
   ftp.chdir(ENV['FTP_DIR'])
 
   ftp.list("**/*") do |e|
-    entry = Net::FTP::List.parse(e)
+    entry = nil
+    begin
+      entry = Net::FTP::List.parse(e)
+    rescue => e
+      err_log << "Failure parsing #{e}"
+      puts "Failure parsing #{e}"
+      next
+    end
 
     # Ignore everything that's not a file (so symlinks, directories and devices etc.)
     next unless entry.file?
